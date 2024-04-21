@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
 const optionsContainer = document.querySelector(".options-container");
+
 // in denotes country INDIA
 const country = "in";
 const options = [
@@ -51,6 +52,7 @@ const getNews = async () => {
   let data = await response.json();
   generateUI(data.articles);
 };
+
 //Category Selection
 const selectCategory = (e, category) => {
   let options = document.querySelectorAll(".option");
@@ -61,6 +63,7 @@ const selectCategory = (e, category) => {
   e.target.classList.add("active");
   getNews();
 };
+
 //Options Buttons
 const createOptions = () => {
   for (let i of options) {
@@ -69,11 +72,13 @@ const createOptions = () => {
     }" onclick="selectCategory(event,'${i}')">${i}</button>`;
   }
 };
+
 const init = () => {
   optionsContainer.innerHTML = "";
   getNews();
   createOptions();
 };
+
 window.onload = () => {
   requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=general&apiKey=${apiKey}`;
   init();
